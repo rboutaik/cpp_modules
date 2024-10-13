@@ -1,0 +1,39 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rboutaik <rboutaik@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/10 23:38:28 by rboutaik          #+#    #+#              #
+#    Updated: 2024/09/11 00:03:44 by rboutaik         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = main
+
+CC = c++
+
+FLAGS = -Wall -Wextra -Werror -std=c++98
+
+C_FILES = Harl.cpp main.cpp
+
+O_FILES = $(C_FILES:.cpp=.o)
+
+HEADERS = Harl.hpp
+
+all : $(NAME)
+
+$(NAME) : $(O_FILES)
+	$(CC) -o $@ $(O_FILES)
+
+%.o : %.cpp $(HEADERS)
+	$(CC) $(FLAGS) -c $< -o $@
+
+clean :
+	rm -f $(O_FILES)
+
+fclean : clean
+	rm -f $(NAME)
+
+re : fclean all
